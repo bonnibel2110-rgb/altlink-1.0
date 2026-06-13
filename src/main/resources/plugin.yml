@@ -1,0 +1,29 @@
+name: AltLink
+version: 1.0.0
+main: com.example.altlink.AltLinkPlugin
+api-version: '1.21'
+author: Claude
+description: Links alt accounts to a main account via UUID spoofing, sharing inventory/permissions/stats.
+
+commands:
+  link:
+    description: Link or confirm linking of alternate Minecraft accounts.
+    usage: |
+      /link <main_nick> <alt_nick>  - send a link code to the alt account (run from main account)
+      /link <code>                  - confirm linking using the received code (run from alt account)
+    permission: altlink.use
+    permission-message: You do not have permission to use this command.
+
+  unlink:
+    description: Відв'язати альт-акаунт від основного.
+    usage: /unlink <нік_альта>
+    permission: altlink.use
+    permission-message: У тебе немає прав на цю команду.
+
+permissions:
+  altlink.use:
+    description: Allows using the /link command
+    default: true
+  altlink.admin:
+    description: Allows managing all link records
+    default: op
