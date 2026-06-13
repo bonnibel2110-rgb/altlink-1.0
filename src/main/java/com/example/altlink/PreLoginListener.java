@@ -1,5 +1,6 @@
 package com.example.altlink;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -39,9 +40,8 @@ public final class PreLoginListener implements Listener {
                 + "' (" + event.getUniqueId() + ") -> main UUID " + link.mainUuid()
                 + " (" + link.mainName() + ")");
 
-        // Replace the UUID the server will use for this connection with the main account's UUID.
-        var profile = event.getPlayerProfile();
-        profile.setUniqueId(link.mainUuid());
-        event.setPlayerProfile(profile);
+        // Create a new player profile with the main account's UUID and the current connection's name
+        var newProfile = Bukkit.createProfile(link.mainUuid(), event.getName());
+        event.setPlayerProfile(newProfile);
     }
 }
