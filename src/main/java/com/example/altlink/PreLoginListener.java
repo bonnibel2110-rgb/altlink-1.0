@@ -40,6 +40,8 @@ public final class PreLoginListener implements Listener {
                 + " (" + link.mainName() + ")");
 
         // Replace the UUID the server will use for this connection with the main account's UUID.
-        event.setPlayerProfile(event.getPlayerProfile().withUniqueId(link.mainUuid()));
+        var profile = event.getPlayerProfile();
+        profile.setUniqueId(link.mainUuid());
+        event.setPlayerProfile(profile);
     }
 }
